@@ -9,9 +9,27 @@ namespace Poker.Domain.Logic
 {
     public class ScoreCalculator
     {
-        public Score CalculateScore(string[] cardInput)
+        private Dictionary<Score, Func<IEnumerable<Card>, bool>> _scores;
+
+        public ScoreCalculator()
+            : base()
         {
-            return Score.HighCard;
+            _scores = new Dictionary<Score, Func<IEnumerable<Card>, bool>>();
+            _scores.Add(Score.HighCard, cards => true);
+        }
+
+        public Score CalculateScore(string[] cardInputs)
+        {
+            IEnumerable<Card> cards =
+                from cardInput in cardInputs
+                select new Card()
+                {
+                    Value = cardInput[0].FromSingleInput(),
+                    Suit = (Suit)Enum.Parse(typeof(Suit), cardInput[1].ToString())
+                };
+
+            Score score = _scores.First(entry => entry.Value(cards)).Key;
+            return score;
         }
     }
 }
