@@ -55,5 +55,11 @@ namespace Poker.Domain.Logic.Tests
         {
             AssertHandScore(Score.FullHouse, "3C", "3D", "4C", "4S", "4H");
         }
+
+        [TestMethod]
+        public void CalculateScoreTest_FourOfAKind()
+        {
+            AssertHandScore(Score.FourOfAKind, "3C", "3H", "3S", "3D", "AC");
+        }
     }
 }
