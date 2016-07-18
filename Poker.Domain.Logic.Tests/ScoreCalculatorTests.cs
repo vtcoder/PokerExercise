@@ -33,5 +33,14 @@ namespace Poker.Domain.Logic.Tests
             Score score = scoreCalculator.CalculateScore(cardInputs);
             Assert.AreEqual<Score>(Score.TwoPair, score);
         }
+
+        [TestMethod]
+        public void CalculateScoreTest_ThreeOfAKind()
+        {
+            string[] cardInputs = new string[] { "3C", "3H", "3S", "4H", "AC" };
+            ScoreCalculator scoreCalculator = new ScoreCalculator();
+            Score score = scoreCalculator.CalculateScore(cardInputs);
+            Assert.AreEqual<Score>(Score.ThreeOfAKind, score);
+        }
     }
 }
