@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Poker.Domain.Entities;
+using System.Collections.Generic;
 
 namespace Poker.Domain.Logic.Tests
 {
@@ -9,8 +10,12 @@ namespace Poker.Domain.Logic.Tests
     {
         private void AssertHandScore(Score expectedScore, params string[] cardInputs)
         {
+            CardParser parser = new CardParser();
+            IEnumerable<Card> cards = parser.Parse(cardInputs);
+
             ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Score actualScore = scoreCalculator.CalculateScore(cardInputs);
+            Score actualScore = scoreCalculator.CalculateScore(cards);
+
             Assert.AreEqual<Score>(expectedScore, actualScore);
         }
 

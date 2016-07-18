@@ -26,16 +26,8 @@ namespace Poker.Domain.Logic
             _scores.Add(Score.HighCard, cards => true);
         }
 
-        public Score CalculateScore(string[] cardInputs)
+        public Score CalculateScore(IEnumerable<Card> cards)
         {
-            IEnumerable<Card> cards =
-                from cardInput in cardInputs
-                select new Card()
-                {
-                    Value = cardInput[0].FromSingleInput(),
-                    Suit = (Suit)Enum.Parse(typeof(Suit), cardInput[1].ToString())
-                };
-
             Score score = _scores.First(entry => entry.Value(cards)).Key;
             return score;
         }
