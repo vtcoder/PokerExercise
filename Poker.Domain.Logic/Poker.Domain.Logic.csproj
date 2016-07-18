@@ -43,6 +43,12 @@
     <Compile Include="ScoreCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Poker.Domain.Entities\Poker.Domain.Entities.csproj">
+      <Project>{7ccd13ed-45c8-419e-b096-725a60748bd6}</Project>
+      <Name>Poker.Domain.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
