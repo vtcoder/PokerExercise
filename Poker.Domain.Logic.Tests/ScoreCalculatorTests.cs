@@ -7,40 +7,35 @@ namespace Poker.Domain.Logic.Tests
     [TestClass]
     public class ScoreCalculatorTests
     {
+        private void AssertHandScore(Score expectedScore, params string[] cardInputs)
+        {
+            ScoreCalculator scoreCalculator = new ScoreCalculator();
+            Score actualScore = scoreCalculator.CalculateScore(cardInputs);
+            Assert.AreEqual<Score>(expectedScore, actualScore);
+        }
+
         [TestMethod]
         public void CalculateScoreTest_HighCard()
         {
-            string[] cardInputs = new string[] { "3C", "4S", "JS", "KH", "AC" };
-            ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Score score = scoreCalculator.CalculateScore(cardInputs);
-            Assert.AreEqual<Score>(Score.HighCard, score);
+            AssertHandScore(Score.HighCard, "3C", "4S", "JS", "KH", "AC");
         }
 
         [TestMethod]
         public void CalculateScoreTest_OnePair()
         {
-            string[] cardInputs = new string[] { "3C", "4S", "3S", "KH", "AC" };
-            ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Score score = scoreCalculator.CalculateScore(cardInputs);
-            Assert.AreEqual<Score>(Score.OnePair, score);
+            AssertHandScore(Score.OnePair, "3C", "4S", "3S", "KH", "AC");
         }
 
         [TestMethod]
         public void CalculateScoreTest_TwoPair()
         {
-            string[] cardInputs = new string[] { "3C", "4S", "3S", "4H", "AC" };
-            ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Score score = scoreCalculator.CalculateScore(cardInputs);
-            Assert.AreEqual<Score>(Score.TwoPair, score);
+            AssertHandScore(Score.TwoPair, "3C", "4S", "3S", "4H", "AC");
         }
 
         [TestMethod]
         public void CalculateScoreTest_ThreeOfAKind()
         {
-            string[] cardInputs = new string[] { "3C", "3H", "3S", "4H", "AC" };
-            ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Score score = scoreCalculator.CalculateScore(cardInputs);
-            Assert.AreEqual<Score>(Score.ThreeOfAKind, score);
+            AssertHandScore(Score.ThreeOfAKind, "3C", "3H", "3S", "4H", "AC");
         }
     }
 }
