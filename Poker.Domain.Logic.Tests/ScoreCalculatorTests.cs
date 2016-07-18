@@ -24,5 +24,14 @@ namespace Poker.Domain.Logic.Tests
             Score score = scoreCalculator.CalculateScore(cardInputs);
             Assert.AreEqual<Score>(Score.OnePair, score);
         }
+
+        [TestMethod]
+        public void CalculateScoreTest_TwoPair()
+        {
+            string[] cardInputs = new string[] { "3C", "4S", "3S", "4H", "AC" };
+            ScoreCalculator scoreCalculator = new ScoreCalculator();
+            Score score = scoreCalculator.CalculateScore(cardInputs);
+            Assert.AreEqual<Score>(Score.TwoPair, score);
+        }
     }
 }
