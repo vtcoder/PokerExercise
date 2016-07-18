@@ -15,6 +15,7 @@ namespace Poker.Domain.Logic
             : base()
         {
             _scores = new Dictionary<Score, Func<IEnumerable<Card>, bool>>();
+            _scores.Add(Score.OnePair, cards => cards.GroupBy(c => c.Value).Any(g => g.Count() == 2));
             _scores.Add(Score.HighCard, cards => true);
         }
 

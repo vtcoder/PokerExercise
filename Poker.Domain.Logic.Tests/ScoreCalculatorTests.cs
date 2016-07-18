@@ -15,5 +15,14 @@ namespace Poker.Domain.Logic.Tests
             Score score = scoreCalculator.CalculateScore(cardInputs);
             Assert.AreEqual<Score>(Score.HighCard, score);
         }
+
+        [TestMethod]
+        public void CalculateScoreTest_OnePair()
+        {
+            string[] cardInputs = new string[] { "3C", "4S", "3S", "KH", "AC" };
+            ScoreCalculator scoreCalculator = new ScoreCalculator();
+            Score score = scoreCalculator.CalculateScore(cardInputs);
+            Assert.AreEqual<Score>(Score.OnePair, score);
+        }
     }
 }
