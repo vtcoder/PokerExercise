@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.Domain.Entities
 {
     public enum Suit
     {
-        D = 0,
-        H = 1,
-        C = 2,
-        S = 3
+        Diamond = 0,
+        Heart = 1,
+        Club = 2,
+        Spade = 3
     }
 
     public enum Value
@@ -46,7 +42,7 @@ namespace Poker.Domain.Entities
 
     public static class EnumExtensions
     {
-        public static Value FromSingleInput(this char input)
+        public static Value ToCardValue(this char input)
         {
             if (input == 'A')
                 return Value.Ace;
@@ -58,6 +54,20 @@ namespace Poker.Domain.Entities
                 return Value.Jack;
             else
                 return (Value)input;
+        }
+
+        public static Suit ToCardSuit(this char input)
+        {
+            if (input == 'D')
+                return Suit.Diamond;
+            else if (input == 'H')
+                return Suit.Heart;
+            else if (input == 'C')
+                return Suit.Club;
+            else if (input == 'S')
+                return Suit.Spade;
+            else
+                throw new InvalidOperationException();
         }
     }
 }

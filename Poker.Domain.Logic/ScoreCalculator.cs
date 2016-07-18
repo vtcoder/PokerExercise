@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.Domain.Logic
 {
+    /// <summary>
+    /// Responsible for calculating the score of poker hands.
+    /// </summary>
     public class ScoreCalculator
     {
         private Dictionary<Score, Func<IEnumerable<Card>, bool>> _scores;

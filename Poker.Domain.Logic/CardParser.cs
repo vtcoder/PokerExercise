@@ -1,23 +1,28 @@
 ﻿using Poker.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.Domain.Logic
 {
+    /// <summary>
+    /// Responsible for parsing card input from a file.
+    /// </summary>
     public class CardParser
     {
+        public CardParser()
+            : base()
+        {
+        }
+
         public IEnumerable<Card> Parse(string[] cardInputs)
         {
             IEnumerable<Card> cards =
                 from cardInput in cardInputs
                 select new Card()
                 {
-                    Value = cardInput[0].FromSingleInput(),
-                    Suit = (Suit)Enum.Parse(typeof(Suit), cardInput[1].ToString())
+                    Value = cardInput[0].ToCardValue(),
+                    Suit = cardInput[1].ToCardSuit()
                 };
             return cards;
         }

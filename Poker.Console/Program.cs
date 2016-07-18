@@ -3,12 +3,12 @@ using Poker.Domain.Logic;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.Console
 {
+    /// <summary>
+    /// Command line interface (CLI) for the poker score calculator exercise.
+    /// </summary>
     class Program
     {
         private const string INVALID_FILE_ARG_MESSAGE = "A valid file path must be specified.";

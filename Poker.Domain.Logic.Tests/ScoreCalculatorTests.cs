@@ -1,13 +1,20 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Poker.Domain.Entities;
 using System.Collections.Generic;
 
 namespace Poker.Domain.Logic.Tests
 {
+    /// <summary>
+    /// Contains unit tests for the ScoreCalculator class.
+    /// </summary>
     [TestClass]
     public class ScoreCalculatorTests
     {
+        public ScoreCalculatorTests()
+            : base()
+        {
+        }
+
         private void AssertHandScore(Score expectedScore, params string[] cardInputs)
         {
             CardParser parser = new CardParser();
