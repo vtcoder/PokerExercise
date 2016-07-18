@@ -37,5 +37,11 @@ namespace Poker.Domain.Logic.Tests
         {
             AssertHandScore(Score.ThreeOfAKind, "3C", "3H", "3S", "4H", "AC");
         }
+
+        [TestMethod]
+        public void CalculateScoreTest_Straight()
+        {
+            AssertHandScore(Score.Straight, "3C", "4H", "5S", "6H", "7C");
+        }
     }
 }
