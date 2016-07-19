@@ -20,7 +20,8 @@ namespace Poker.Domain.Logic
             _scores.Add(Score.FourOfAKind, cards => cards.GroupBy(c => c.Value).Any(g => g.Count() == 4));
             _scores.Add(Score.FullHouse, cards => _scores[Score.OnePair](cards) && _scores[Score.ThreeOfAKind](cards));
             _scores.Add(Score.Flush, cards => cards.GroupBy(c => c.Suit).Count() == 1);
-            _scores.Add(Score.Straight, cards => (cards.Distinct().Max(c => c.Value) - cards.Distinct().Min(c => c.Value)) == 4);
+            _scores.Add(Score.Straight, cards => (cards.Distinct().Max(c => c.Value) - cards.Distinct().Min(c => c.Value)) == 4 || _scores[Score.LowAceStraight](cards));
+            _scores.Add(Score.LowAceStraight, cards => (cards.Min(c => c.Value) == Value.Two && (cards.Where(c => c.Value != Value.Ace).Distinct().Max(c => c.Value) - Value.Two) == 3));
             _scores.Add(Score.ThreeOfAKind, cards => cards.GroupBy(c => c.Value).Any(g => g.Count() == 3));
             _scores.Add(Score.TwoPair, cards => cards.GroupBy(c => c.Value).Count(g => g.Count() == 2) == 2);
             _scores.Add(Score.OnePair, cards => cards.GroupBy(c => c.Value).Any(g => g.Count() == 2));

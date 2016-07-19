@@ -29,6 +29,7 @@ namespace Poker.Domain.Entities
 
     public enum Score
     {
+        LowAceStraight = -1,
         HighCard = 0,
         OnePair = 1,
         TwoPair = 2,
@@ -53,7 +54,7 @@ namespace Poker.Domain.Entities
             else if (input == 'J')
                 return Value.Jack;
             else
-                return (Value)input;
+                return  (Value)Convert.ToInt32(input.ToString());
         }
 
         public static Suit ToCardSuit(this char input)
