@@ -57,6 +57,12 @@ namespace Poker.Domain.Logic.Tests
         }
 
         [TestMethod]
+        public void CalculateScoreTest_Straight_RangeCheck()
+        {
+            AssertHandScore(Score.OnePair, "3C", "3H", "4S", "6H", "7C");
+        }
+
+        [TestMethod]
         public void CalculateScoreTest_Straight_StartingWithAce()
         {
             AssertHandScore(Score.Straight, "AC", "2D", "3C", "4H", "5S");
